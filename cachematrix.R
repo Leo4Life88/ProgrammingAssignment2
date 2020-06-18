@@ -1,4 +1,4 @@
-                ## Put comments here that give an overall description of what your
+## Put comments here that give an overall description of what your
 ## functions do
 
 ## Write a short comment describing this function
@@ -9,7 +9,7 @@ makeCacheMatrix <- function(x = matrix()) {
         i <- NULL
         setinverse <- function(inverse) i <<- inverse  # this fxn stores the inverse i.e. cached inverse
         getinverse <- function() i                     # this fxn gets the cached inverse 
-        getmat <- function() X 
+        getmat <- function() x 
         list(setinverse = setinverse, 
              getinverse = getinverse,
              getmat = getmat)
@@ -25,12 +25,12 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-        i <- X$getinverse()                     # We first get the inverse then return it if not null
+        i <- x$getinverse()                     # We first get the inverse then return it if not null
         if(!is.null(i)) {
                 message("getting cached data")
                 return(i)                       # An explicit return to stop this block of code when done
         }
-        i <- solve(X$getmat(), ...)             # Otherwise, we compute the inverse of our original matrix 
-        X$setinverse(i)                         # Then set the inverse matrix in the cache
+        i <- solve(x$getmat(), ...)             # Otherwise, we compute the inverse of our original matrix 
+        x$setinverse(i)                         # Then set the inverse matrix in the cache
         i                                       # Implicit return of value in i 
 }
